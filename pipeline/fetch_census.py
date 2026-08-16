@@ -118,6 +118,7 @@ def main():
 
     log(f"fetched {len(collected)} unique repos")
 
+    os.makedirs(SNAPSHOTS, exist_ok=True)
     # 3) merge with previous snapshot (keep yesterday's entries that vanished from search)
     prev_path = None
     for name in sorted(os.listdir(SNAPSHOTS)):
