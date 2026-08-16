@@ -1,0 +1,41 @@
+name: update-index
+
+on:
+  schedule:
+    - cron: '0 3 * * *'   # 每天 03:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch curated awesome list
+        run: curl -sL https://raw.githubusercontent.com/awesome-dsh-plugin/awesome-dsh-plugin/main/README.md -o pipeline/awesome.md
+
+      - name: Refresh census snapshot
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 pipeline/fetch_census.py
+
+      - name: Score, cluster & probe installability
+        run: python3 pipeline/score_build.py
+
+      - name: Build shipped index
+        run: python3 pipeline/build_index.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name github-actions
+          git config user.email actions@github.com
+          git add data/index.json data/meta.json
+          if git diff --cached --quiet; then
+            echo "index unchanged"
+          else
+            git commit -m "chore: refresh plugin index ($(date -u +%F))"
+            git push
+          fi
