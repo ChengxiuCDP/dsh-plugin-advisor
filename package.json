@@ -1,0 +1,39 @@
+{
+  "name": "dsh-plugin-advisor",
+  "version": "0.1.0",
+  "description": "Quality-aware plugin discovery inside DeepSeek Harness: ask your agent in natural language, get ranked dsh-plugin recommendations with install commands, quality scores and risk flags. 质量感知的 DSH 插件发现：一句话问你的 agent，得到带质量分、风险提示与安装命令的插件推荐。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "files": [
+    "lib/**/*.js",
+    "data/index.json",
+    "cordis.patch.yml",
+    "README.md",
+    "SKILL.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChengxiuCDP/dsh-plugin-advisor.git"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "dsh-plugin",
+    "plugin-discovery",
+    "recommendation"
+  ],
+  "license": "MIT"
+}

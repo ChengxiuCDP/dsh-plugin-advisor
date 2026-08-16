@@ -1,0 +1,5 @@
+# dsh-plugin-advisor bundle patch —— 挂载进 profile 插件树（host 半注册 find_dsh_plugins 模型工具）。
+- insert:
+    - id: dsh-plugin-advisor
+      name: dsh-plugin-advisor
+      config: {}
