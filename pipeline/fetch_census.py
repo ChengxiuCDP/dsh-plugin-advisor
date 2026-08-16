@@ -133,6 +133,7 @@ def main():
         log(f"merged with {os.path.basename(prev_path)} -> {len(collected)}")
 
     repos = sorted(collected.values(), key=lambda r: -r["stargazers_count"])
+    os.makedirs(SNAPSHOTS, exist_ok=True)
     out = {
         "date": today,
         "fetched_at": datetime.datetime.now(datetime.UTC).isoformat(),

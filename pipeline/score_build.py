@@ -123,6 +123,7 @@ def main():
     log(f"curated entries: {len(curated)}")
 
     cache = {}
+    os.makedirs(CACHE, exist_ok=True)
     if os.path.exists(BUNDLE_CACHE):
         cache = json.load(open(BUNDLE_CACHE))
     repos = snap["repos"]
