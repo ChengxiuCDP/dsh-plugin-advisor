@@ -24,6 +24,10 @@ dsh plugin --profile web add -w github:ChengxiuCDP/dsh-plugin-advisor
 
 agent 会调用 `find_dsh_plugins` 工具，给出 Top 匹配、匹配理由、风险提示（NOASSERTION / 无许可证 / 停更）与安装命令。**安装前请自行审阅源码**——推荐 ≠ 安全审计。
 
+## 在线体验
+
+想先看看它能推荐出什么？打开公开站点 **https://dsh-plugin-hub-3t7.pages.dev**（同一套数据与排名引擎，浏览器里直接搜）。
+
 ## 数据与更新
 
 - `data/index.json`：全量索引快照（每日由 CI 更新，见 `dsh-plugin-hub` 仓库的数据管道）
