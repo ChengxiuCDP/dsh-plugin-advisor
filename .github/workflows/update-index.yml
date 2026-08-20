@@ -25,17 +25,20 @@ jobs:
       - name: Score, cluster & probe installability
         run: python3 pipeline/score_build.py
 
-      - name: Build shipped index
+      - name: Build shipped index (plugin)
         run: python3 pipeline/build_index.py
+
+      - name: Build site data bundle
+        run: python3 pipeline/build_site_data.py
 
       - name: Commit if changed
         run: |
           git config user.name github-actions
           git config user.email actions@github.com
-          git add data/index.json data/meta.json
+          git add data/index.json data/meta.json site-data/
           if git diff --cached --quiet; then
-            echo "index unchanged"
+            echo "nothing changed"
           else
-            git commit -m "chore: refresh plugin index ($(date -u +%F))"
+            git commit -m "chore: refresh plugin index + site data ($(date -u +%F))"
             git push
           fi
